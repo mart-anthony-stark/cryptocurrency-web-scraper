@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { getAll } = require("../controllers/scraper");
+const { getTopCoins, getNews } = require("../controllers/scraper");
 
-router.get("/", getAll);
+router.get("/", getTopCoins);
+router.get("/news", getNews);
 module.exports = router;

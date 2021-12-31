@@ -14,30 +14,40 @@ module.exports = {
       "Rank",
       "Name",
       "Price",
-      "24hr Change",
-      "7d Change",
+      "24hr Change Rate",
+      "7d Change Rate",
       "Market Cap",
-      "Volume",
+      "Volume(24hr)",
       "Circulating Supply",
     ];
 
     $(selector).each(function (parentIndex, parentEl) {
       let keyIndex = 0;
       const coinObj = {};
+      let acronym;
 
       if (parentIndex < 10) {
         $(parentEl)
           .children()
           .each((childIndex, childEl) => {
-            const tableDataValue = $(childEl).text();
+            let tableDataValue = $(childEl).text();
+            if (keyIndex === 1) {
+              tableDataValue = $(childEl).find(".sc-1eb5slv-0.iworPT").text();
+              acronym = $(childEl)
+                .find(".sc-1eb5slv-0.gGIpIK.coin-item-symbol")
+                .text();
+            }
+
             if (tableDataValue) {
               coinObj[keys[keyIndex++]] = tableDataValue;
             }
           });
+        coinObj["Coin Symbol"] = acronym;
         cryptoCurrencies.push(coinObj);
+        // console.log(coinObj);
       }
     });
-    res.json({ cryptoCurrencies });
+    res.json({ website: URL, cryptoCurrencies });
   },
 
   async getNews(req, res) {

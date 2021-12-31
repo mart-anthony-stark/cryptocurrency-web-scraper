@@ -44,7 +44,6 @@ module.exports = {
           });
         coinObj["Coin Symbol"] = acronym;
         cryptoCurrencies.push(coinObj);
-        // console.log(coinObj);
       }
     });
     res.json({ website: URL, cryptoCurrencies });

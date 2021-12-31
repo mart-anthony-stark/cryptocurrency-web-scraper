@@ -19,6 +19,7 @@ module.exports = {
       "Market Cap",
       "Volume(24hr)",
       "Circulating Supply",
+      "Last 7 days",
     ];
 
     $(selector).each(function (parentIndex, parentEl) {
@@ -36,6 +37,9 @@ module.exports = {
               acronym = $(childEl)
                 .find(".sc-1eb5slv-0.gGIpIK.coin-item-symbol")
                 .text();
+            }
+            if (keyIndex === 8) {
+              tableDataValue = $(childEl).find(".h7vnx2-0.bCltOL").attr("src");
             }
 
             if (tableDataValue) {
